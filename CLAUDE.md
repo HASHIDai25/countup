@@ -17,8 +17,10 @@ The project runs in a Dev Container based on the "Go & PostgreSQL" template:
 
 ## Git
 
-The workspace is mounted with root ownership, so git may fail with "detected dubious ownership". Fix with:
+The workspace is mounted with root ownership, so git fails with "detected dubious ownership" unless the repo is marked safe. `postCreateCommand` in `devcontainer.json` does this automatically on container creation; if it is missing (e.g. in a container created before that change), run:
 
 ```
 git config --global --add safe.directory /workspaces/countup
 ```
+
+`.devcontainer/.env` is git-ignored; copy `.devcontainer/.env.example` to `.env` and fill in values on a fresh clone.
